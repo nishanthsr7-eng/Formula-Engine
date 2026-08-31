@@ -1,0 +1,62 @@
+<Window x:Class="FormulaEngine.Studio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FormulaEngine Studio" Height="650" Width="1080">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="220"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="0,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="Formula:" VerticalAlignment="Center" Width="70"/>
+                <TextBox x:Name="FormulaInput" Width="440" Margin="4,0"
+                         AutomationProperties.AutomationId="FormulaInput"
+                         Text="IF(AND(x &gt; 0, y &gt; 0), x + y, 0)"/>
+                <Button x:Name="EvaluateButton" Content="Evaluate" Width="90" Margin="8,0,0,0"
+                        AutomationProperties.AutomationId="EvaluateButton"
+                        Click="EvaluateButton_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="Variables:" VerticalAlignment="Top" Width="70" Margin="0,4,0,0"/>
+                <TextBox x:Name="VariablesInput" Width="440" Height="60" AcceptsReturn="True" Margin="4,0"
+                         AutomationProperties.AutomationId="VariablesInput"
+                         Text="x = 3&#x0a;y = 4"/>
+                <TextBlock Text="one per line, name = value" Foreground="Gray" Margin="8,4,0,0"
+                           VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <TextBlock x:Name="ResultText" Grid.Row="2" Margin="0,10,0,0" FontSize="16" FontWeight="Bold"
+                       AutomationProperties.AutomationId="ResultText"/>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0">
+                <Button x:Name="StepThroughButton" Content="Step Through" Width="110"
+                        AutomationProperties.AutomationId="StepThroughButton"
+                        Click="StepThroughButton_Click"/>
+                <Button x:Name="NextStepButton" Content="Next Step &gt;" Width="100" Margin="8,0,0,0"
+                        AutomationProperties.AutomationId="NextStepButton"
+                        IsEnabled="False" Click="NextStepButton_Click"/>
+                <TextBlock x:Name="StepText" Margin="12,0,0,0" VerticalAlignment="Center" FontFamily="Consolas"
+                           AutomationProperties.AutomationId="StepText"/>
+            </StackPanel>
+
+            <TreeView x:Name="AstTreeView" Grid.Row="4" Margin="0,10,0,0"
+                      AutomationProperties.AutomationId="AstTreeView"/>
+        </Grid>
+
+        <GroupBox Grid.Column="1" Header="Available Functions">
+            <ListBox x:Name="FunctionsList" BorderThickness="0"
+                     AutomationProperties.AutomationId="FunctionsList"/>
+        </GroupBox>
+    </Grid>
+</Window>
