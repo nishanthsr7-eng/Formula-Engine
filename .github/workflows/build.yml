@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    # WPF (FormulaEngine.Studio) only builds on Windows.
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore FormulaEngine.sln
+
+      - name: Build
+        run: dotnet build FormulaEngine.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test FormulaEngine.sln --no-build --configuration Release --verbosity normal
