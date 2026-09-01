@@ -1,6 +1,8 @@
 # FormulaEngine
 
 ![build](../../actions/workflows/build.yml/badge.svg)
+![license](https://img.shields.io/badge/license-MIT-blue.svg)
+![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4.svg)
 
 A formula/expression calculation engine, written in C#, with a WPF desktop
 IDE for interactively evaluating expressions, inspecting how they parse, and
@@ -10,11 +12,11 @@ Mirrors the shape of a real "calculation engine + desktop client" product:
 a standalone, dependency-free interpreter core, and a thin UI shell built on
 top of it.
 
-![FormulaEngine Studio mid step-through evaluation](docs/screenshot.png)
+![FormulaEngine Studio stepping through IF(AND(x > 0, y > 0), x + y, 0), highlighting each AST node in turn](docs/step-through.gif)
 
-*Stepping through `IF(AND(x > 0, y > 0), x + y, 0)` — the highlighted node in
-the AST tree is the one the "Step 6/12" line describes, and the result line
-shows the value computed so far.*
+*Stepping through `IF(AND(x > 0, y > 0), x + y, 0)` one node at a time — the
+highlighted node in the AST tree is the one the current step describes, and
+the result line updates as the evaluation completes.*
 
 ## Structure
 
